@@ -15,15 +15,11 @@ class Home extends StatelessWidget{
         backgroundColor: Colors.red[700],//press ctrl+q to view more color
       ),
       body: Center(
-        child: Image(
-          //Network image
-          //image: NetworkImage('https://expertvagabond.com/wp-content/uploads/isle-of-skye-guide-900x600.jpg')
-
-          //Local image
-          image: AssetImage('assets/medicine_budda.jpg')
-
-        )
-      ),
+        child: Icon(
+          Icons.airport_shuttle,
+          color: Colors.lightBlue,
+          size: 50.0,
+      )),
 
       //every widget is class
       floatingActionButton: FloatingActionButton(//instance of class
