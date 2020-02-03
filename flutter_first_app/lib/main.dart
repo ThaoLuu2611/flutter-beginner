@@ -16,14 +16,16 @@ class Home extends StatelessWidget{
       ),
       body: Center(
         //RaiseButton: has a little shadow, FlatBotton don't have shadow
-        child: FlatButton(
-          onPressed: (){
-            print('you clicked me');
-          },
-          child: Text('Click me'),
-          color: Colors.blue,
-          textColor: Colors.white,
-        )),
+        child: RaisedButton.icon(
+            onPressed: (){
+              print('you clicked icon');
+            },
+            icon: Icon(Icons.menu),
+            label: Text("Email"),
+          color: Colors.amber,
+        ),
+
+    ),
 
       //every widget is class
       floatingActionButton: FloatingActionButton(//instance of class
