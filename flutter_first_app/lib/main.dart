@@ -16,13 +16,13 @@ class Home extends StatelessWidget{
       ),
       body: Center(
         //RaiseButton: has a little shadow, FlatBotton don't have shadow
-        child: RaisedButton.icon(
-            onPressed: (){
-              print('you clicked icon');
-            },
-            icon: Icon(Icons.menu),
-            label: Text("Email"),
-          color: Colors.amber,
+        child: IconButton(
+          onPressed: (){
+            print("yo clicked my icon");
+          },
+          icon: Icon(Icons.ac_unit),
+          iconSize: 50,
+          color: Colors.red,
         ),
 
     ),
