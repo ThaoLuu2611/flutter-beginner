@@ -12,29 +12,39 @@ class Home extends StatelessWidget{
       appBar: AppBar(
         title:Text('My first flutter app'),//propertice and value
         centerTitle: true,
-        backgroundColor: Colors.red[200],//press ctrl+q to view more color
+        backgroundColor: Colors.blue[200],//press ctrl+q to view more color
       ),
 
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
-          Text('hello, world'),
-          FlatButton(
-            onPressed: (){},
-            color: Colors.amber,
-            child: Text('click me')
+          Text('hihi'),
+          Text('haha'),
+          Text('multi'),
+          Row(
+            children: <Widget>[
+              Text('hello'),
+              Text('world'),
+            ],
           ),
           Container(
+            padding: EdgeInsets.all(20.0),
             color: Colors.cyan,
-            padding: EdgeInsets.all(5.0),
-            child: Text('inside container'),
-
+            child: Text('one'),
           ),
-          Text('my name is Thao'),
-          Text('hihi')
-        ],// the children should be a list of widget
+          Container(
+            padding: EdgeInsets.all(30.0),
+            color: Colors.yellow,
+            child: Text('one'),
+          ),
+          Container(
+            padding: EdgeInsets.all(40.0),
+            color: Colors.pink,
+            child: Text('one'),
+          ),
 
+        ],
       ),
       //every widget is class
       floatingActionButton: FloatingActionButton(//instance of class
