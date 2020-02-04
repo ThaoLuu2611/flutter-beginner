@@ -12,21 +12,15 @@ class Home extends StatelessWidget{
       appBar: AppBar(
         title:Text('My first flutter app'),//propertice and value
         centerTitle: true,
-        backgroundColor: Colors.red[700],//press ctrl+q to view more color
+        backgroundColor: Colors.red[200],//press ctrl+q to view more color
       ),
-      body: Center(
-        //RaiseButton: has a little shadow, FlatBotton don't have shadow
-        child: IconButton(
-          onPressed: (){
-            print("yo clicked my icon");
-          },
-          icon: Icon(Icons.ac_unit),
-          iconSize: 50,
-          color: Colors.red,
-        ),
 
-    ),
-
+      body: Container(
+        padding: EdgeInsets.fromLTRB(10, 0, 20, 20),
+        margin: EdgeInsets.symmetric(horizontal: 40, vertical: 100),
+        child: Text('hihi'),
+        color: Colors.yellow,
+      ),
       //every widget is class
       floatingActionButton: FloatingActionButton(//instance of class
         child:Text('click here'),
