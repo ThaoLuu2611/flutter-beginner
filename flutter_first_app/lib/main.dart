@@ -1,62 +1,66 @@
 import 'package:flutter/material.dart';
+import 'package:english_words/english_words.dart';
 
 void main() => runApp(MaterialApp(
-  home: Home(),
+  home: MyApp(),
 ));
 
-class Home extends StatelessWidget{
+class MyApp extends StatelessWidget{
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title:Text('My first flutter app'),//propertice and value
-        centerTitle: true,
-        backgroundColor: Colors.blue[200],//press ctrl+q to view more color
+        title: Text('welcome to flutter'),
       ),
+      body: RandomWords()
+    );
+  }
+}
 
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: <Widget>[
-          Text('hihi'),
-          Text('haha'),
-          Text('multi'),
-          Row(
-            children: <Widget>[
-              Text('hello'),
-              Text('world'),
-            ],
-          ),
-          Container(
-            padding: EdgeInsets.all(20.0),
-            color: Colors.cyan,
-            child: Text('one'),
-          ),
-          Container(
-            padding: EdgeInsets.all(30.0),
-            color: Colors.yellow,
-            child: Text('one'),
-          ),
-          Container(
-            padding: EdgeInsets.all(40.0),
-            color: Colors.pink,
-            child: Text('one'),
-          ),
-
-        ],
-      ),
-      //every widget is class
-      floatingActionButton: FloatingActionButton(//instance of class
-        child:Text('click here'),
-        onPressed: (){
-
-        },
-        foregroundColor: Colors.white,
-        backgroundColor: Colors.red[200],
-      ),
+class RandomWordsState extends State<RandomWords>
+{
+  final List<WordPair> _suggestions = <WordPair>[];
+  final TextStyle _biggerFont = const TextStyle(fontSize: 18);
+  Widget _buildSuggestion(){
+    return ListView.builder(
+      itemBuilder: (BuildContext _context, int i){
+        if(i.isOdd){
+          return Divider();
+        }
+        int index = i~/2;
+        if(index >= _suggestions.length){
+          _suggestions.addAll(generateWordPairs().take(10));
+        }
+        return _buildRow(_suggestions[index]);
+      }
 
     );
-
   }
+
+  Widget _buildRow(WordPair pair){
+    return ListTile(
+      title: Text(
+        pair.asPascalCase,
+        style: _biggerFont,
+      )
+    );
+  }
+  final workPair = WordPair.random();
+  @override
+  Widget build(BuildContext context) {
+    //final WordPair wordPair = WordPair.random();
+    //return Text(wordPair.asPascalCase);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('list view name')
+      ),
+      body: _buildSuggestion(),
+    );
+  }
+}
+
+class RandomWords extends StatefulWidget{
+  @override
+  RandomWordsState createState() => RandomWordsState();
 }
