@@ -6,61 +6,74 @@ void main() => runApp(MaterialApp(
 ));
 
 class MyApp extends StatelessWidget{
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('welcome to flutter'),
       ),
-      body: RandomWords()
+      body: Center(
+        child: RandomeWord(),
+      )
     );
   }
 }
 
-class RandomWordsState extends State<RandomWords>
-{
-  final List<WordPair> _suggestions = <WordPair>[];
-  final TextStyle _biggerFont = const TextStyle(fontSize: 18);
-  Widget _buildSuggestion(){
+class RandomWordState extends State<RandomeWord>{
+  final List<WordPair> _suggestion = <WordPair>[];
+  final TextStyle _biggerFont = const TextStyle(fontSize: 13);
+  final Set<WordPair> saved = Set<WordPair>();
+  Widget _suggestionList(){
     return ListView.builder(
-      itemBuilder: (BuildContext _context, int i){
-        if(i.isOdd){
-          return Divider();
+        itemBuilder: (BuildContext _context, int i){
+          if(i.isOdd){
+            return Divider();
+          }
+          final index = i ~/ 2;
+          if(index >= _suggestion.length)
+            _suggestion.addAll(generateWordPairs().take(110));
+          return _buildRow(_suggestion[index]);
         }
-        int index = i~/2;
-        if(index >= _suggestions.length){
-          _suggestions.addAll(generateWordPairs().take(10));
-        }
-        return _buildRow(_suggestions[index]);
-      }
 
-    );
+        );
+
   }
 
   Widget _buildRow(WordPair pair){
+    final bool alreadySaved = saved.contains(pair);
     return ListTile(
       title: Text(
         pair.asPascalCase,
         style: _biggerFont,
-      )
+      ),
+      trailing: Icon(
+        alreadySaved ? Icons.favorite : Icons.favorite_border,
+        color: alreadySaved? Colors.red : Colors.green,
+      ),
+      onTap: (){
+        setState(() {
+          if(alreadySaved){
+            saved.remove(pair);
+          } else
+            saved.add(pair);
+        });
+      },
     );
   }
-  final workPair = WordPair.random();
+  final WordPair wordPair = WordPair.random();
   @override
   Widget build(BuildContext context) {
-    //final WordPair wordPair = WordPair.random();
     //return Text(wordPair.asPascalCase);
     return Scaffold(
       appBar: AppBar(
-        title: Text('list view name')
+        title: Text('My list view'),
       ),
-      body: _buildSuggestion(),
+      body: _suggestionList()
+
     );
   }
 }
 
-class RandomWords extends StatefulWidget{
-  @override
-  RandomWordsState createState() => RandomWordsState();
+class RandomeWord extends StatefulWidget{
+  RandomWordState createState() => RandomWordState();
 }
