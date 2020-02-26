@@ -1,110 +1,107 @@
 import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
-//import 'package:table_calendar/table_calendar.dart';
 
+void main() => runApp(MaterialApp(
+  home: MyHome(),
+));
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget{
+class MyHome extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter',
-       theme: ThemeData(
-         primaryColor: Colors.amber,
-       ),
-        home: RandomWords()
-    );
-  }
-}
 
+    Widget titleSection = Container(
+      padding: const EdgeInsets.all(32),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  child: Text(
+                    'Oeschinen Lake Camground',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold
+                    ),
+                  ),
+                ),
+                Text(
+                  'Kandersteg,, Switzerland',
+                  style: TextStyle(
+                    color: Colors.grey[500],
+                  ),
+                ),
 
-class RandonWordsState extends State<RandomWords>{
-  final WordPair word = WordPair.random();
-  List<WordPair> _list = <WordPair>[];
-  Set<WordPair> set = Set<WordPair>();
-  final _biggerFont = const TextStyle(fontSize: 18.0);
-
-  Widget _suggestion(){
-    return ListView.builder(
-        itemBuilder: (BuildContext context, int i){
-            if(i.isOdd)
-              return Divider();
-            int index = i~/2;
-            if(index >= _list.length){
-              _list.addAll(generateWordPairs().take(10));
-            }
-            return(_row(_list[index]));
-        });
-  }
-
-  Widget _row(WordPair pair) {
-    final isSaved = set.contains(pair);
-    return ListTile(
-      title: Text(pair.asPascalCase),
-      contentPadding: EdgeInsets.all(10),
-      trailing: Icon(
-        isSaved ? Icons.favorite : Icons.favorite_border,
-        color: isSaved ? Colors.red : Colors.green,
-      ),
-      onTap: (){
-        setState(() {
-          if(isSaved)
-            set.remove(pair);
-          else {
-            set.add(pair);
-        }
-        });
-      },
-
-    );
-  }
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Startup Name Generator'),
-        actions: <Widget>[
-          IconButton(icon: Icon(Icons.list), onPressed: _pushSaved,)
+              ],
+            ),
+          ),
+          Icon(
+            Icons.star,
+            color: Colors.red[500],
+          ),
+          Text('41'),
         ],
       ),
-      body: _suggestion()
+
     );
 
-  }
-
-  void _pushSaved(){
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (BuildContext context){
-          final Iterable<ListTile> tiles = set.map(
-              (WordPair pair){
-                return ListTile(
-                  title: Text(
-                    pair.asPascalCase,
-                    style: _biggerFont,
-                  )
-                );
-              }
-          );
-          final List<Widget> divided = ListTile.divideTiles(
-            context: context,
-            tiles: tiles,
-          ).toList();
-          return Scaffold(
-            appBar: AppBar(
-              title: Text('Saved suggestion'),
+    Column _buttonColumn(Color color, IconData icon, String label){
+      return Column(
+        children: <Widget>[
+          Icon(icon, color: color),
+          Container(
+            margin: const EdgeInsets.only(top: 8),
+            child: Text(
+              label,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+                color: color,
+              ),
             ),
-            body: ListView(children: divided),
-          );
+          ),
+        ],
+      );
+    }
 
-        }
+    Widget _buttonRow(){
+      Color color = Theme.of(context).primaryColor;
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          _buttonColumn(color, Icons.call, 'CALL'),
+          _buttonColumn(color, Icons.near_me, 'ROUTE'),
+          _buttonColumn(color, Icons.share, 'SHARE'),
+        ],
+      );
+    }
+
+    Widget _textSection = Container(
+      padding: const EdgeInsets.all(32),
+      child: Text('Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
+          'Alps. Situated 1,578 meters above sea level, it is one of the '
+          'larger Alpine Lakes. A gondola ride from Kandersteg, followed by a '
+          'half-hour walk through pastures and pine forest, leads you to the '
+          'lake, which warms to 20 degrees Celsius in the summer. Activities '
+          'enjoyed here include rowing, and riding the summer toboggan run.'),
+    );
+
+    return MaterialApp(
+      title: 'Flutter demo layout',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('flutter layout demo'),
+        ),
+        body: Column(
+          children: <Widget>[
+            Image.asset(
+            'assets/icon3.png'),
+            titleSection,
+            _buttonRow(),
+            _textSection,
+          ],
+        )
       )
     );
   }
-
-}
-class RandomWords extends StatefulWidget{
-  @override
-  RandonWordsState createState() => RandonWordsState();
 }
