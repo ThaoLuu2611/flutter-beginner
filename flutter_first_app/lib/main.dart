@@ -1,107 +1,100 @@
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MaterialApp(
-  home: MyHome(),
+  home: MyCard(),
 ));
 
-class MyHome extends StatelessWidget{
+class MyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-    Widget titleSection = Container(
-      padding: const EdgeInsets.all(32),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  child: Text(
-                    'Oeschinen Lake Camground',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold
-                    ),
-                  ),
-                ),
-                Text(
-                  'Kandersteg,, Switzerland',
-                  style: TextStyle(
-                    color: Colors.grey[500],
-                  ),
-                ),
-
-              ],
-            ),
-          ),
-          Icon(
-            Icons.star,
-            color: Colors.red[500],
-          ),
-          Text('41'),
-        ],
+    return Scaffold(
+      backgroundColor: Colors.grey[900],
+      appBar: AppBar(
+        title: Text('My ID card'),
+        centerTitle: true,
+        backgroundColor: Colors.grey[850],
+        elevation: 0.0,
       ),
+      body: Padding(
+        padding: EdgeInsets.fromLTRB(30, 40, 39, 0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+           Center(
+             child: CircleAvatar(
+               backgroundImage: AssetImage('assets/icon4.png'),
+               radius: 30.0,
+             )
+           ),
+            Center(
+              child: CircleAvatar(
+                backgroundImage: AssetImage('assets/icon2.png'),
+                radius: 40.0,
+              )
+            ),
+            Divider(height: 30),
 
-    );
-
-    Column _buttonColumn(Color color, IconData icon, String label){
-      return Column(
-        children: <Widget>[
-          Icon(icon, color: color),
-          Container(
-            margin: const EdgeInsets.only(top: 8),
-            child: Text(
-              label,
+            Text(
+              'NAME',
               style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w400,
-                color: color,
+                  color: Colors.grey,
+                  letterSpacing: 1.0
               ),
             ),
-          ),
-        ],
-      );
-    }
-
-    Widget _buttonRow(){
-      Color color = Theme.of(context).primaryColor;
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          _buttonColumn(color, Icons.call, 'CALL'),
-          _buttonColumn(color, Icons.near_me, 'ROUTE'),
-          _buttonColumn(color, Icons.share, 'SHARE'),
-        ],
-      );
-    }
-
-    Widget _textSection = Container(
-      padding: const EdgeInsets.all(32),
-      child: Text('Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
-          'Alps. Situated 1,578 meters above sea level, it is one of the '
-          'larger Alpine Lakes. A gondola ride from Kandersteg, followed by a '
-          'half-hour walk through pastures and pine forest, leads you to the '
-          'lake, which warms to 20 degrees Celsius in the summer. Activities '
-          'enjoyed here include rowing, and riding the summer toboggan run.'),
-    );
-
-    return MaterialApp(
-      title: 'Flutter demo layout',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('flutter layout demo'),
+            SizedBox(height: 10.0),
+            Text(
+              'Thao',
+              style: TextStyle(
+                  color: Colors.amberAccent[200],
+                  letterSpacing: 1.0,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 10.0),
+            Text(
+              'NAME',
+              style: TextStyle(
+                  color: Colors.grey,
+                  letterSpacing: 1.0
+              ),
+            ),
+            SizedBox(height: 30.0),
+            Text(
+              'Thao',
+              style: TextStyle(
+                color: Colors.amberAccent[200],
+                letterSpacing: 1.0,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 10.0),
+            Row(
+              children: <Widget>[
+                Icon(
+                  Icons.email,
+                  color: Colors.grey[400],
+                ),
+                SizedBox(width: 20.0),
+                Text(
+                  'Leee hll',
+                  style: TextStyle(
+                    color: Colors.green,
+                    fontSize: 10.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
+              ],
+            )
+          ]
         ),
-        body: Column(
-          children: <Widget>[
-            Image.asset(
-            'assets/icon3.png'),
-            titleSection,
-            _buttonRow(),
-            _textSection,
-          ],
-        )
-      )
+      ),
     );
   }
 }
+
+
