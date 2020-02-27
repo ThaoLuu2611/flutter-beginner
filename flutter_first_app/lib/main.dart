@@ -7,7 +7,70 @@ void main() => runApp(MaterialApp(
   home: MyCard(),
 ));
 
-class MyCard extends StatelessWidget {
+class MyCard extends StatefulWidget {
+  @override
+  _MyCardState createState() => _MyCardState();
+}
+
+class _MyCardState extends State<MyCard> {
+  int age = 2;
+  String name = "hihi";
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('fluuter'),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: <Widget>[
+          Text(
+              '$name',
+            style: TextStyle(
+              color: Colors.red,
+              fontWeight: FontWeight.bold,
+              fontSize: 30,
+            ),
+          ),
+          SizedBox(height: 30),
+          Text(
+              '$age',
+            style: TextStyle(
+              color: Colors.blue,
+              fontWeight: FontWeight.bold,
+              fontSize: 30,
+            ),
+          ),
+          IconButton(
+            icon: Icon(Icons.add),
+            color: Colors.green,
+            focusColor: Colors.black26,
+            onPressed: (){
+              setState(() {
+                age +=1;
+                if(age == 20)
+                  age = 0;
+                name = "name "+ age.toString();
+              });
+            },
+          )
+
+        ],
+      )
+    );
+  }
+}
+
+/*
+
+class MyCard extends StatefulWidget {
+  @override
+  _MyCardState createState() => _MyCardState();
+}
+
+class _MyCardState extends State<MyCard> {
+  int level = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,6 +80,15 @@ class MyCard extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.grey[850],
         elevation: 0.0,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          setState(() {
+            level +=1;
+          });
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.grey[600],
       ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(30, 40, 39, 0),
@@ -64,7 +136,7 @@ class MyCard extends StatelessWidget {
             ),
             SizedBox(height: 30.0),
             Text(
-              'Thao',
+              '$level',
               style: TextStyle(
                 color: Colors.amberAccent[200],
                 letterSpacing: 1.0,
@@ -98,3 +170,5 @@ class MyCard extends StatelessWidget {
 }
 
 
+
+*/
