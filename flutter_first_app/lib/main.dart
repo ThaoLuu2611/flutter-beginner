@@ -45,10 +45,6 @@ class _MyListState extends State<MyList> {
     Quote(text: 'Call of the Wind', author: 'Lee'),
   ];
 
-  Widget templateCard(quote){
-    return BookCard(book:quote);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +54,7 @@ class _MyListState extends State<MyList> {
         backgroundColor: Colors.grey[200],
         body: ListView(
           padding: EdgeInsets.all(30),
-          children: books.map((book) => templateCard(book)).toList(),
+          children: books.map((book) => BookCard(book:book)).toList(),
         ));
   }
 
