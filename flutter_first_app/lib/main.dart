@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'quote.dart';
+import 'book_card.dart';
 
 void main() => runApp(MaterialApp(
       home: MyList(),
@@ -39,7 +40,7 @@ class _MyListState extends State<MyList> {
     Quote(text: 'Call of the Wind', author: 'Lee'),
     Quote(text: 'Call of the Wind', author: 'Lee'),
     Quote(text: 'Call of the Wind', author: 'Lee'),
-    Quote(text: 'Call of the Wind', author: 'Lee'),
+    Quote(text: 'Call of tjhe Wind', author: 'Lee'),
     Quote(text: 'Call of the Wind', author: 'Lee'),
     Quote(text: 'Call of the Wind', author: 'Lee'),
     Quote(text: 'Call of the Wind', author: 'Lee'),
@@ -58,28 +59,4 @@ class _MyListState extends State<MyList> {
         ));
   }
 
-}
-
-class BookCard extends StatelessWidget {
-  final Quote book;
-
-  BookCard({this.book});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.all(10),
-      color: Colors.grey,
-      child: Padding(
-
-        padding: EdgeInsets.all(12),
-        child: Text(
-          book.text,
-          style: TextStyle(
-            color: Colors.amberAccent,
-          ),
-        ),
-      ),
-    );
-  }
 }
