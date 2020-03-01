@@ -19,32 +19,34 @@ class _MyListState extends State<MyList> {
     Quote(text: 'Call of the Wind', author: 'Lee'),
     Quote(text: 'Call of the Wind', author: 'Lee'),
     Quote(text: 'Call of the Wind', author: 'Lee'),
+    Quote(text: 'Call of the Wind', author: 'Lee'),
+    Quote(text: 'Call of the Wind', author: 'Lee'),
+    Quote(text: 'Call of the Wind', author: 'Lee'),
+    Quote(text: 'Call of the Wind', author: 'Lee'),
+    Quote(text: 'Call of the Wind', author: 'Lee'),
+    Quote(text: 'Call of the Wind', author: 'Lee'),
+    Quote(text: 'Call of the Wind', author: 'Lee'),
+    Quote(text: 'Call of the Wind', author: 'Lee'),
+    Quote(text: 'Call of the Wind', author: 'Lee'),
+    Quote(text: 'Call of the Wind', author: 'Lee'),
+    Quote(text: 'Call of the Wind', author: 'Lee'),
+    Quote(text: 'Call of the Wind', author: 'Lee'),
+    Quote(text: 'Call of the Wind', author: 'Lee'),
+    Quote(text: 'Call of the Wind', author: 'Lee'),
+    Quote(text: 'Call of the Wind', author: 'Lee'),
+    Quote(text: 'Call of the Wind', author: 'Lee'),
+    Quote(text: 'Call of the Wind', author: 'Lee'),
+    Quote(text: 'Call of the Wind', author: 'Lee'),
+    Quote(text: 'Call of the Wind', author: 'Lee'),
+    Quote(text: 'Call of the Wind', author: 'Lee'),
+    Quote(text: 'Call of the Wind', author: 'Lee'),
+    Quote(text: 'Call of the Wind', author: 'Lee'),
+    Quote(text: 'Call of the Wind', author: 'Lee'),
+    Quote(text: 'Call of the Wind', author: 'Lee'),
   ];
 
-  Widget bookCard(quote) {
-    return Card(
-      margin: EdgeInsets.all(20),
-      child: Container(
-        padding: EdgeInsets.all(30),
-        color: Colors.amberAccent,
-        child: Column(
-          children: <Widget>[
-            Text(
-              quote.text,
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                color: Colors.red,
-              ),
-            ),
-            SizedBox(height: 20),
-            Text(
-              quote.author,
-            ),
-          ],
-        ),
-      ),
-    );
+  Widget templateCard(quote){
+    return BookCard(book:quote);
   }
 
   @override
@@ -55,7 +57,33 @@ class _MyListState extends State<MyList> {
         ),
         backgroundColor: Colors.grey[200],
         body: ListView(
-          children: books.map((book) => bookCard(book)).toList(),
+          padding: EdgeInsets.all(30),
+          children: books.map((book) => templateCard(book)).toList(),
         ));
+  }
+
+}
+
+class BookCard extends StatelessWidget {
+  final Quote book;
+
+  BookCard({this.book});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.all(10),
+      color: Colors.grey,
+      child: Padding(
+
+        padding: EdgeInsets.all(12),
+        child: Text(
+          book.text,
+          style: TextStyle(
+            color: Colors.amberAccent,
+          ),
+        ),
+      ),
+    );
   }
 }
